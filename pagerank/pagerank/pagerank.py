@@ -57,6 +57,27 @@ def transition_model(corpus, page, damping_factor):
     linked to by `page`. With probability `1 - damping_factor`, choose
     a link at random chosen from all pages in the corpus.
     """
+    if not corpus or page not in corpus:
+        return None
+
+    num_pages = len(corpus)
+    transition_probabilities = {}
+
+    # Probability of choosing a link from the current page
+    linked_pages = corpus[page]
+    linked_prob = damping_factor / len(linked_pages) if linked_pages else 0
+
+    for p in corpus:
+        # Probability of choosing a link from any page in the corpus
+        corpus_prob = (1 - damping_factor) / num_pages
+
+        # Total probability for the current page
+        total_prob = linked_prob if p in linked_pages else 0
+        total_prob += corpus_prob
+
+        transition_probabilities[p] = total_prob
+
+    return transition_probabilities
     raise NotImplementedError
 
 
