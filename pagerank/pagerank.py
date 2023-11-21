@@ -111,8 +111,6 @@ def sample_pagerank(corpus, damping_factor, n):
 
     return page_ranks
 
-
-def iterate_pagerank(corpus, damping_factor):
     """
     Return PageRank values for each page by iteratively updating
     PageRank values until convergence.
@@ -121,6 +119,23 @@ def iterate_pagerank(corpus, damping_factor):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
+def iterate_pagerank(corpus, damping_factor):
+    page_ranks = dict.fromkeys(corpus.keys(), 0)
+    num_pages = len(corpus)
+    for page in page_ranks:
+        page_ranks[page] = (1 -damping_factor) / num_pages + damping_factor * sum((1/num_pages) / len(corpus[p]) for p in corpus if page in corpus[p])
+    ptotal = sum(page_ranks.values())
+    print("trololol",ptotal)
+    return page_ranks
+    
+    
+        
+
+
+
+
+    
+
     raise NotImplementedError
 
 
