@@ -78,7 +78,6 @@ def transition_model(corpus, page, damping_factor):
         transition_probabilities[p] = total_prob
 
     return transition_probabilities
-    raise NotImplementedError
 
 
 def sample_pagerank(corpus, damping_factor, n):
