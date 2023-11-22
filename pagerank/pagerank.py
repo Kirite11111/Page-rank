@@ -120,15 +120,29 @@ def sample_pagerank(corpus, damping_factor, n):
     PageRank values should sum to 1.
     """
 def iterate_pagerank(corpus, damping_factor):
-    page_ranks = dict.fromkeys(corpus.keys(), 0)
-    num_pages = len(corpus)
-    for page in page_ranks:
-        page_ranks[page] = (1 -damping_factor) / num_pages + damping_factor * sum((1/num_pages) / len(corpus[p]) for p in corpus if page in corpus[p])
-    ptotal = sum(page_ranks.values())
-    print("trololol",ptotal)
-    return page_ranks
-    
-    
+    numberOfPages = len(corpus)
+    PRi = {page: 1 / numberOfPages for page in corpus}
+
+    convergenceObj = 0.001
+    converged = False
+
+    while not converged:
+        NPRi = {}
+        for page in corpus:
+            new_rank = (1 - damping_factor) / numberOfPages + damping_factor * sum(PRi[p] / len(corpus[p]) for p in corpus if page in corpus[p])
+            NPRi[page] = new_rank
+        #stockage des écarts entre les anciens et les nouveaux rangs
+        changes = [abs(NPRi[page] - PRi[page]) for page in corpus]
+        max_change = max(changes)
+
+        # si il y a convergence
+
+        if max_change < convergenceObj:
+            converged = True
+        else:
+            PRi = NPRi
+
+    return PRi
         
 
 
