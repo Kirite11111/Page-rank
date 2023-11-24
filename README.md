@@ -1,6 +1,6 @@
-# ticTacToe
+# Page Rank
 
-## Project Tic Tac Toe for M. Gouvy
+## Project Page Rank for M. Gouvy
 
 ### Enzo Chevalier, Eliott Garnier, Jean Barbet, Thomas Siest
 
