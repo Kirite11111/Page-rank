@@ -111,6 +111,8 @@ def sample_pagerank(corpus, damping_factor, n):
 
     return page_ranks
 
+
+def iterate_pagerank(corpus, damping_factor):
     """
     Return PageRank values for each page by iteratively updating
     PageRank values until convergence.
@@ -119,7 +121,7 @@ def sample_pagerank(corpus, damping_factor, n):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
-def iterate_pagerank(corpus, damping_factor):
+
     numberOfPages = len(corpus)
     PRi = {page: 1 / numberOfPages for page in corpus}
 
@@ -143,15 +145,7 @@ def iterate_pagerank(corpus, damping_factor):
             PRi = NPRi
 
     return PRi
-        
-
-
-
-
-    
-
-    raise NotImplementedError
-
+ 
 
 if __name__ == "__main__":
     main()
